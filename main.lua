@@ -5,9 +5,7 @@ local engine, system, entity, component = require "lib/adorbs" ()
 function love.load()
 end
 
-function love.update(dt)
-end
-
 function love.draw()
+  engine.process()
 end
 
