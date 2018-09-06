@@ -1,5 +1,6 @@
 local tiny = require("lib/tiny")
 local drawSystem = require("src/systems/draw")
+local animationSystem = require("src/systems/animation")
 local thingEntity = require("src/entities/thing")
 local batEntity = require("src/entities/bat")
 
@@ -23,8 +24,9 @@ end
 -- Initialize the ECS world
 function initializeECSWorld()
     return tiny.world(
-        thingEntity(0, 0),
-         batEntity(50, 50),
-        drawSystem
+        --- thingEntity(0, 0),
+        batEntity(50, 50),
+        drawSystem,
+        animationSystem
     )
 end
