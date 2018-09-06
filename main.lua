@@ -1,11 +1,30 @@
-local love = require "love_standard"
-local _ = require "lib/moses"
-local engine, system, entity, component = require "lib/adorbs" ()
+local tiny = require("lib/tiny")
+local drawSystem = require("src/systems/draw")
+local thingEntity = require("src/entities/thing")
+local batEntity = require("src/entities/bat")
 
+local world = {}
+
+-- Load
 function love.load()
+    world = initializeECSWorld()
 end
 
+-- Update
+function love.update(delta_time)
+    world:update(delta_time)
+end
+
+-- Draw
 function love.draw()
-  engine.process()
+    drawSystem:update()
 end
 
+-- Initialize the ECS world
+function initializeECSWorld()
+    return tiny.world(
+        thingEntity(0, 0),
+         batEntity(50, 50),
+        drawSystem
+    )
+end
